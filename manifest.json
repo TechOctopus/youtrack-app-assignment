@@ -1,0 +1,20 @@
+{
+  "name": "yt-projects-toggle",
+  "title": "Projects Toggle",
+  "description": "A simple YouTrack app for listing projects and managing a boolean flag, developed as a test assignment.",
+  "$schema": "https://json.schemastore.org/youtrack-app.json",
+  "vendor": {
+    "name": "Heorhi Davydau"
+  },
+  "icon": "icon.svg",
+  "widgets": [
+    {
+      "key": "yt-projects-toggle",
+      "name": "Yt Projects Toggle",
+      "indexPath": "yt-projects-toggle/index.html",
+      "extensionPoint": "MAIN_MENU_ITEM",
+      "iconPath": "yt-projects-toggle/widget-icon.svg",
+      "description": "A widget for managing projects and toggling settings"
+    }
+  ]
+}
