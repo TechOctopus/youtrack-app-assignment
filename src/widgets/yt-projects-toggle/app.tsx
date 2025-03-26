@@ -1,19 +1,15 @@
-import React, {memo, useCallback} from 'react';
-import Button from '@jetbrains/ring-ui-built/components/button/button';
+import React, { memo } from "react";
+import type { HostAPI } from "../../../@types/globals";
+import { Projects } from "./components/Projects";
 
-// Register widget in YouTrack. To learn more, see https://www.jetbrains.com/help/youtrack/devportal-apps/apps-host-api.html
-const host = await YTApp.register();
+interface Props {
+  host: HostAPI;
+}
 
-const AppComponent: React.FunctionComponent = () => {
-  const callBackend = useCallback(async () => {
-    const result = await host.fetchApp('backend/debug', {query: {test: '123'}});
-    // eslint-disable-next-line no-console
-    console.log('request result', result);
-  }, []);
-
+const AppComponent: React.FunctionComponent<Props> = ({host}) => {
   return (
     <div className="widget">
-      <Button primary onClick={callBackend}>{'Make HTTP Request'}</Button>
+      <Projects host={host}/>
     </div>
   );
 };
