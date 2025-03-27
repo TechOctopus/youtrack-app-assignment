@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import type { HostAPI } from "../../../@types/globals";
-import { Projects } from "./components/Projects";
+import { Projects } from "./components/project/Projects.tsx";
 
 interface Props {
   host: HostAPI;

@@ -1,5 +1,5 @@
 import type { HostAPI } from "../../../../@types/globals";
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { usePagination } from "./usePagination.ts";
 import { getProjects, type Project, setProjectStatus } from "../api/projects";
 
@@ -10,9 +10,9 @@ export function useProjects(host: HostAPI) {
     async (top, skip) => await getProjects(host, query, top, skip)
   );
 
-  const search = useCallback(async () => {
-    await pagination.reset();
-  }, [pagination]);
+  const search = useCallback((newQuery: string) => {
+    setQuery(newQuery);
+  }, []);
 
   async function changeProjectStatus(projectKey: string, status: boolean) {
     await setProjectStatus(host, projectKey, status)
@@ -29,12 +29,14 @@ export function useProjects(host: HostAPI) {
       });
   }
 
+  useEffect(() => {
+    (async () => await pagination.reset())()
+  }, [query]);
+
   return {
     ...pagination,
     changeProjectStatus,
-    search,
-    query,
-    setQuery
+    search
   };
 }
 

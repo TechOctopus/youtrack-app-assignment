@@ -71,6 +71,10 @@ export async function getProjects(
   $skip?: number
 ) {
   const projects = await fetchBaseProjects(host, query, $top, $skip);
+  if (projects.length === 0) {
+    return [];
+  }
+
   const statuses = await fetchProjectStatuses(host, projects);
 
   return combineProjectsWithStatuses(projects, statuses);

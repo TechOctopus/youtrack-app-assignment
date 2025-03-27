@@ -1,5 +1,5 @@
 import React from "react";
-import { type Project } from "../api/projects";
+import { type Project } from "../../api/projects";
 import { ProjectItem } from "./ProjectItem.tsx";
 import Button from "@jetbrains/ring-ui-built/components/button/button";
 
@@ -20,7 +20,7 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({
                                                           }) => {
   return (
     <>
-      <div>
+      <div className="projects-list">
         {projects.map((project) => (
           <ProjectItem
             key={project.id}
@@ -31,8 +31,9 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({
       </div>
 
       {hasMore && (
-        <div>
+        <div className="projects-list__load-more">
           <Button
+            inline
             onClick={onLoadMore}
             loader={isLoadingMore}
             disabled={isLoadingMore}

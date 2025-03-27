@@ -1,5 +1,5 @@
 import React from "react";
 
-export const EmptyState: React.FC = () => {
+export const ProjectEmptyState: React.FC = () => {
   return <p>No projects found.</p>;
 };
