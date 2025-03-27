@@ -8,6 +8,7 @@ interface ProjectsListProps {
   hasMore: boolean;
   isLoadingMore: boolean;
   onLoadMore: () => void;
+  changeProjectStatus: (projectId: string, status: boolean) => void;
 }
 
 export const ProjectsList: React.FC<ProjectsListProps> = ({
@@ -15,12 +16,17 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({
                                                             hasMore,
                                                             isLoadingMore,
                                                             onLoadMore,
+                                                            changeProjectStatus,
                                                           }) => {
   return (
     <>
       <div>
         {projects.map((project) => (
-          <ProjectItem key={project.id} project={project}/>
+          <ProjectItem
+            key={project.id}
+            project={project}
+            toggleStatus={() => changeProjectStatus(project.shortName, !project.status)}
+          />
         ))}
       </div>
 

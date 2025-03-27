@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 const DEFAULT_PAGE_SIZE = 10;
 
@@ -9,6 +9,7 @@ interface PaginationParams {
 
 interface PaginationState<T> {
   data: T[];
+  setData: React.Dispatch<React.SetStateAction<T[]>>;
   isLoading: boolean;
   isFetchingMore: boolean;
   error: Error | null;
@@ -92,6 +93,7 @@ export function usePagination<T>(
 
   return {
     data,
+    setData,
     isLoading,
     isFetchingMore,
     error,

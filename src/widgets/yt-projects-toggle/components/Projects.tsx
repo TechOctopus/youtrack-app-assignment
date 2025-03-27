@@ -15,6 +15,7 @@ interface Props {
 export const Projects: React.FunctionComponent<Props> = ({host}) => {
   const {
     data: projects,
+    changeProjectStatus,
     isLoading,
     isFetchingMore,
     error,
@@ -41,6 +42,7 @@ export const Projects: React.FunctionComponent<Props> = ({host}) => {
       {projects.length > 0 && (
         <ProjectsList
           projects={projects}
+          changeProjectStatus={changeProjectStatus}
           hasMore={hasMore}
           isLoadingMore={isFetchingMore}
           onLoadMore={loadMore}
