@@ -1,0 +1,51 @@
+name: Build YouTrack app
+
+on:
+  push:
+    tags:
+      - "*"
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.18.0"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Create package
+        if: github.ref_type == 'tag'
+        run: npm run pack
+
+      - name: Get current date
+        if: github.ref_type == 'tag'
+        id: date
+        run: echo "DATE=$(date +%Y-%m-%d-%H:%M)" >> $GITHUB_ENV
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: github.ref_type == 'tag'
+        with:
+          name: "${{ github.ref_name }} 📦"
+          body: |
+            Release ${{ github.ref_name }}, built at ${{ env.DATE }}
+          files: |
+            *.zip
