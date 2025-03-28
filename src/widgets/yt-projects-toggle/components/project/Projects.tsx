@@ -26,13 +26,15 @@ export const Projects: React.FunctionComponent<Props> = ({host}) => {
     search,
   } = useProjects(host);
 
+  const isEmpty = projects.length === 0 && !isLoading && !error
+
   return (
     <ContentLayout className="projects">
       <div className="projects__content">
         <ProjectSearch search={search}/>
         {isLoading && <Loader message="Loading projects..."/>}
         {error && <ProjectErrorState onRetry={retry}/>}
-        {projects.length === 0 && !isLoading && !error && <ProjectEmptyState/>}
+        {isEmpty && <ProjectEmptyState/>}
         {projects.length > 0 && (
           <ProjectsList
             projects={projects}

@@ -33,8 +33,8 @@ async function fetchProjectStatuses(
 ) {
   /*
    *  TODO: Currently using .shortName instead of the preferred .key property
-   *  because .key is not yet supported in the current YouTrack backend version.
-   *  This should be updated when backend support is added.
+   *    because .key is not yet supported in the current YouTrack backend version.
+   *    This should be updated when backend support is added.
    */
   const projectsKeys = projects.map((project) => project.shortName);
 
@@ -86,7 +86,7 @@ export async function setProjectStatus(
   status: boolean
 ) {
   return await host.fetchApp("backend/project/status", {
-    method: "POST",
+    method: "PUT",
     body: {
       status,
       projectKey

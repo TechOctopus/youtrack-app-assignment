@@ -63,7 +63,10 @@ exports.httpHandler = {
       handle: handleGetProjects,
     },
     {
-      method: "POST",
+      method: "PUT",
+      /* TODO: Change the path to "project/{projectKey}/status" to follow RESTful conventions,
+       *  but this is currently not supported in YouTrack apps.
+      */
       path: "project/status",
       handle: handlePostProjectStatus,
     },
