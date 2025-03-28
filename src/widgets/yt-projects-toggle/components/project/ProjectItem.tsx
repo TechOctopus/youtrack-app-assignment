@@ -14,7 +14,7 @@ const ProjectItemComponent: React.FunctionComponent<Props> = ({project, toggleSt
     <div className="project-item__info">
       <Avatar size={40} url={project.iconUrl} alt={`${ project.name } icon`}/>
       <Link className="project-item__link" href={`/projects/${ project.shortName }`} active>
-        {project.shortName}
+        {project.name}
       </Link>
     </div>
     <Toggle checked={project.status} onClick={toggleStatus}/>

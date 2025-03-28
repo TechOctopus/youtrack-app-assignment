@@ -13,6 +13,7 @@ async function fetchBaseProjects(
   const response = await host.fetchYouTrack("admin/projects", {
     query: {
       fields: projectFields,
+      archived: false,
       query,
       $top,
       $skip,
